@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MovieX - Best Streaming Movies</title>
+    <title>Movie Landing Page</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+    background: url('bg.jpg') no-repeat center center/cover;
+    background-attachment: fixed;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6); 
+    z-index: -1;
+}
+
+        {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+    scroll-behavior: smooth; /* Efek scroll otomatis */
+}
+header {
+    padding: 15px;
+}
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    padding: 0;
+}
+nav ul li {
+    margin: 0 15px;
+}
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 10px;
+}
+nav ul li a:hover {
+    background: #ffcc00;
+    color: #333;
+    border-radius: 5px;
+}
+.logo {
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+}
+.hero {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    padding-top: 3vh;
+    position: relative;
+}
+.hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 600px;
+}
+.btn {
+    display: inline-block;
+    background: #ffcc00;
+    color: #222;
+    padding: 10px 20px;
+    margin-top: 10px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background: #ffaa00;
+}
+/* MOVIE SLIDER */
+.movie-slider {
+    padding: 10px;
+    gap: 20px;
+    align-items: stretch;
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+    overflow-x: auto;
+    display: flex;
+    align-items: stretch
+}
+
+/* MOVIE CONTAINER */
+.movie-container {
+    display: flex;
+    gap: 15px;
+    transition: transform 0.5s ease-in-out;
+    width: max-content; /* Menyesuaikan jumlah film */
+    align-items: stretch
+    margin-top: 10px;
+}
+
+/* MOVIE ITEM */
+.movie {
+    position: relative; /* Agar rating tetap di dalam gambar */
+    min-width: 200px;
+    max-width: 200px;
+    text-align: center;
+    background: #222;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* GAMBAR MOVIE */
+.movie img {
+    width: 100%;
+    height: 280px; 
+    object-fit: cover;
+    border-radius: 10px;
+}
+.movie h3 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    color: #ffffff;
+    margin-top: 10px;
+    text-align: center;
+}
+/* RATING DI POJOK KIRI ATAS */
+.rating {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: rgba(0, 0, 0, 0.8);
+    color: #ffcc00;
+    padding: 5px 10px;
+    font-weight: bold;
+    border-radius: 5px;
+    font-size: 14px;
+}
+.detail-btn {
+    display: inline-block;
+    padding: 8px 15px;
+    border-radius: 5px;
+    background: linear-gradient(45deg, #ff0000, #ff7300);
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 50px;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0px 5px 15px rgba(255, 0, 0, 0.5);
+    cursor: pointer;
+    text-align: center;
+    overflow: hidden;
+
+}
+/* Hover Effect - Animasi */
+.play-button:hover {
+    transform: scale(1.1); /* Tombol sedikit membesar */
+    box-shadow: 0px 8px 20px rgba(255, 115, 0, 0.7); /* Efek glow */
+}
+
+/* Animasi Glow */
+.play-button::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 10%, transparent 70%);
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.play-button:hover::before {
+    opacity: 1;
+}
+
+
+.prev:hover, .next:hover {
+    background-color: rgba(0, 0, 0, 0.9);
+}
+/* ========== ABOUT US ========== */
+.about-container {
+    text-align: center;
+    max-width: 800px;
+    margin: auto;
+    padding: 50px 20px;
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 10px;
+}
+.about-title {
+    font-size: 2em;
+    color: #ffcc00;
+    margin-bottom: 10px;
+}
+.about-text {
+    font-size: 1.2em;
+    color: #fff;
+    margin-bottom: 20px;
+}
+.about-quote {
+    font-style: italic;
+    color: #ddd;
+    margin-bottom: 20px;
+}
+.about-btn {
+    background: #ffcc00;
+    color: black;
+    padding: 12px 20px;
+    border-radius: 5px;
+    font-size: 1.2em;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+.about-btn:hover {
+    background: #ff9900;
+}
+/* ========== CONTACT US ========== */
+.contact-container {
+    text-align: center;
+    max-width: 600px;
+    margin: auto;
+    padding: 50px 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+}
+.contact-title {
+    font-size: 2em;
+    color: #00ffcc;
+    margin-bottom: 10px;
+}
+.contact-text {
+    font-size: 1.2em;
+    color: white;
+    margin-bottom: 20px;
+}
+.contact-info p {
+    color: #ddd;
+    font-size: 1.1em;
+    margin: 5px 0;
+}
+.contact-btn {
+    background: #00ffcc;
+    color: black;
+    padding: 12px 20px;
+    border-radius: 5px;
+    font-size: 1.2em;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+.contact-btn:hover {
+    background: #00cc99;
+}
+footer {
+    display: flex;
+    justify-content: center;  /* Tengah horizontal */
+    align-items: center;  /* Tengah vertikal */
+    background: #222;
+    color: white;
+    height: 30px;
+}
+
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="logo">🎬 MovieX</div>
+        <nav>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#movies" class="nav-link">Movies</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section id="home" class="section">
+    <section class="hero">
+        <div class="hero-content">
+        <h1>🎬 Welcome to MovieX</h1>
+        <p class="hero-subtitle">Explore, Watch, and Experience Cinema Like Never Before!</p>
+        <p>"Join us today and unlock endless possibilities! </p>
+            <p><strong>" FREE 🚀✨"!!!! </strong> </p>
+        <a href="https://www.effectiveratecpm.com/s8wf4xw6y?key=6cc897ad93f9e3cd2f48eccea346fec8" class="btn">Sign Up</a>
+        <a href="https://www.effectiveratecpm.com/s8wf4xw6y?key=6cc897ad93f9e3cd2f48eccea346fec8" class="btn btn-secondary">Watch Now</a>
+    </section>
+
+    <!-- MOVIE SLIDER -->
+    <section id="movies" class="section">
+    <section class="movies">
+        <h2>Movie Populer</h2>
+        <div class="movie-slider">
+            <div class="movie-container">
+                <div class="movie">
+                    <img src="movie1.jpg" alt="Movie 1">
+                    <div class="rating">⭐ 4.8</div>
+                    <h3>FAST X</h3>
+                    <a href="https://www.effectiveratecpm.com/s8wf4xw6y?key=6cc897ad93f9e3cd2f48eccea346fec8" class="detail-btn">&#9654</a>
+                </div>
+                <div class="movie">
+                    <img src="movie2.jpg" alt="Movie 2">
+                    <div class="rating">⭐ 4.8</div>
+                    <h3>SUPARMAN</h3>
+                    <a href="https://hagech.com/client?camp=s9&aff_id=2183&source=wow&aff_sub2=facebook&click_id=wow" class="detail-btn">&#9654</a>
+                </div>
+                <div class="movie">
+                    <img src="movie3.jpg" alt="Movie 3">
+                    <div class="rating">⭐ 5.0</div>
+                    <h3>CAPTAIN AMERICA </h3>
+                    <a href="https://www.effectiveratecpm.com/s8wf4xw6y?key=6cc897ad93f9e3cd2f48eccea346fec8" class="detail-btn">&#9654</a>
+                </div>
+                <div class="movie">
+                    <img src="movie4.jpg" alt="Movie 4">
+                    <div class="rating">⭐ 4.6</div>
+                    <h3>DRAGON</h3>
+                    <a href="https://hagech.com/client?camp=s9&aff_id=2183&source=otw&aff_sub2=facebook&click_id=tajir" class="detail-btn">&#9654</a>
+                </div>
+                <div class="movie">
+                    <img src="movie5.jpg" alt="Movie 5">
+                    <div class="rating">⭐ 4.7</div>
+                    <h3>AIR FORCE ONE DOWN</h3>
+                    <a href="https://hagech.com/client?camp=s9&aff_id=2183&source=otw&aff_sub2=facebook&click_id=tajir" class="detail-btn">&#9654</a>
+                </div>
+            </div>
+</section>
+ <!-- About Section (Dibawah Movie List) -->
+    <section id="about" class="section">
+        <div class="about-container">
+            <h2 class="about-title">🎥 MovieX – Your Ultimate Cinema Experience! 🍿</h2>
+            <p class="about-text">
+                Welcome to <strong>MovieX</strong>, a place where movies are not just entertainment, but an extraordinary experience!  
+                Explore the best collection of movies across genres-from thrilling action, to entertaining comedy, to heartfelt drama.  
+                We bring the world of cinema right to your screen!  
+            </p>
+            <p class="about-quote">"A movie is a dream you can watch!" - MovieX Team</p>
+            <a href="https://hagech.com/client?camp=s9&aff_id=2183&source=gawe&aff_sub2=facebook&click_id=gawe" class="about-btn">🎬 Explore Movies</a>
+        </div>
+</section>
+<section id="contact" class="section">
+    <div class="contact-container">
+        <h2 class="contact-title">📩 Get in Touch with Us!</h2>
+        <p class="contact-text">
+            Have questions, suggestions, or want to collaborate?  
+            Feel free to contact us! We are here to help you.
+        </p>
+        <div class="contact-info">
+            <p><strong>Email:</strong> support@moviex.com</p>
+            <p><strong>Phone:</strong> +62 812-3456-7890</p>
+            <p><strong>Follow Us:</strong> <a href="https://www.effectiveratecpm.com/s8wf4xw6y?key=6cc897ad93f9e3cd2f48eccea346fec8">Instagram</a> | <a href="https://www.effectiveratecpm.com/s8wf4xw6y?key=6cc897ad93f9e3cd2f48eccea346fec8">Twitter</a></p>
+        </div>
+        <a href="https://www.effectiveratecpm.com/s8wf4xw6y?key=6cc897ad93f9e3cd2f48eccea346fec8" class="contact-btn">📨 Send Message</a>
+    </div>
+</section>
+    </section>
+    <a href="/" alt="page hit counter" target="_blank" >
+    <img  src="stats.jpg" alt="" border="0">
+    </section>
+    <footer>
+        <p>&copy; 2025 MovieX | All rights reserved.</p>
+    </footer>
+    <style>
+
+        
+
+        
